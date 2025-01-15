@@ -35,7 +35,8 @@ jobs:
       - name: Test Unprivileged Ping
         run: |
           echo "Testing unprivileged ping to 127.0.0.1..."
-          ping -c 1 -W 1 8.8.4.4 || echo "Unprivileged ping failed"
+          ping -c 1 -W 1 127.0.0.1 || echo "Unprivileged ping failed"
+          ping -c 1 -W 1 8.8.8.8 || echo "Unprivileged ping failed"
 
       - name: Increase Ping Group Range
         run: |
@@ -54,4 +55,5 @@ jobs:
       - name: Test Unprivileged Ping After Change
         run: |
           echo "Testing unprivileged ping after changing ping_group_range..."
-          ping -c 1 -W 1 8.8.4.4 || echo "Unprivileged ping failed after changing ping_group_range"
+          ping -c 1 -W 1 127.0.0.1 || echo "Unprivileged ping failed"
+          ping -c 1 -W 1 8.8.8.8 || echo "Unprivileged ping failed"
