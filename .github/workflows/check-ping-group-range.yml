@@ -39,3 +39,13 @@ jobs:
         run: |
           echo "Testing unprivileged ping to 127.0.0.1..."
           ping -c 1 -W 1 127.0.0.1 || echo "Unprivileged ping failed"
+
+      - name: Increase Ping Group Range
+        run: |
+          echo "Increasing ping_group_range to 0 2147483647"
+          sudo sysctl -w net.ipv4.ping_group_range="0 2147483647"
+
+      - name: Test Unprivileged Ping After Change
+        run: |
+          echo "Testing unprivileged ping after changing ping_group_range..."
+          ping -c 1 -W 1 127.0.0.1 || echo "Unprivileged ping failed after changing ping_group_range"
